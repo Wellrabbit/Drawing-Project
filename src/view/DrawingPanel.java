@@ -76,7 +76,9 @@ public class DrawingPanel extends JPanel
 			int blue = (int)(Math.random() * 256);
 			int green = (int)(Math.random() * 256);
 			mainGraphics.setColor(new Color(red,green,blue));
-			mainGraphics .fill(current);
+			mainGraphics.setStroke(new BasicStroke((int) (Math.random()* 6)));
+			mainGraphics.draw(current);
+			
 			
 	}
 }
