@@ -176,7 +176,7 @@ public void addCircle()
 {
 	int xPosition = (int)(Math.random() * getWidth());
 	int yPosition = (int)(Math.random() * getHeight());
-	int width = (int)(Math.random() * 50);
+	int width = (int)(Math.random() * 100);
 	int height = width;
 	
 	Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition, width, height);
