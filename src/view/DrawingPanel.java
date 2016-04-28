@@ -20,8 +20,9 @@ public class DrawingPanel extends JPanel
 	private JButton triangleButton;
 	private JButton polygonButton;
 	private JButton ellipseButton;
+	private JButton clearButton;
 	private JButton circleButton;
-	private ShapePanel shapePanel;
+	private testPanel shapePanel;
 	private SpringLayout baseLayout;
 	private ArrayList<Rectangle> rectangleList;
 	private ArrayList<Rectangle> squareList;
@@ -39,13 +40,15 @@ public class DrawingPanel extends JPanel
 		polygonButton = new JButton("Polygon");
 		ellipseButton = new JButton("Ellipse");
 		circleButton = new JButton("Circle");
+		clearButton = new JButton("Clear Screen");
 		baseLayout = new SpringLayout();
-		baseLayout.putConstraint(SpringLayout.NORTH, circleButton, 0, SpringLayout.NORTH, rectangleButton);
-		baseLayout.putConstraint(SpringLayout.EAST, circleButton, -6, SpringLayout.WEST, rectangleButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, ellipseButton, 0, SpringLayout.NORTH, triangleButton);
-		baseLayout.putConstraint(SpringLayout.EAST, ellipseButton, -6, SpringLayout.WEST, polygonButton);
 		
-		shapePanel = new ShapePanel();
+		
+		shapePanel = new testPanel();
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 895, SpringLayout.NORTH, this);
+		
+		shapePanel.setBackground(Color.ORANGE);
+		
 		
 		
 		
@@ -73,6 +76,7 @@ public class DrawingPanel extends JPanel
 		this.add(polygonButton);
 		this.add(ellipseButton);
 		this.add(circleButton);
+		this.add(clearButton);
 	}
 
 	private void setupLayout()
@@ -89,6 +93,13 @@ public class DrawingPanel extends JPanel
 		baseLayout.putConstraint(SpringLayout.EAST, triangleButton, 0, SpringLayout.EAST, squareButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, polygonButton, 6, SpringLayout.SOUTH, rectangleButton);
 		baseLayout.putConstraint(SpringLayout.EAST, polygonButton, -53, SpringLayout.WEST, triangleButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, circleButton, 0, SpringLayout.NORTH, rectangleButton);
+		baseLayout.putConstraint(SpringLayout.EAST, circleButton, -6, SpringLayout.WEST, rectangleButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, ellipseButton, 0, SpringLayout.NORTH, triangleButton);
+		baseLayout.putConstraint(SpringLayout.EAST, ellipseButton, -6, SpringLayout.WEST, polygonButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 102, SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 30, SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, 0, SpringLayout.EAST, squareButton);
 	}
 
 	private void setupListeners()
@@ -97,14 +108,14 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				int xPosition = (int) (Math.random() * getWidth());
-				int yPosition = (int) (Math.random() * getHeight());
-				int width = (int) (Math.random() * 100);
-				int hieght = (int) (Math.random() * 100);
-
-				rectangleList.add(new Rectangle(xPosition, yPosition, width,
-						hieght));
-
+//				int xPosition = (int) (Math.random() * getWidth());
+//				int yPosition = (int) (Math.random() * getHeight());
+//				int width = (int) (Math.random() * 100);
+//				int hieght = (int) (Math.random() * 100);
+//
+//				rectangleList.add(new Rectangle(xPosition, yPosition, width,
+//						hieght));
+				shapePanel.addRectangle();
 				repaint();
 
 			}
@@ -114,16 +125,24 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				int xPosition = (int) (Math.random() * getWidth());
-				int yPosition = (int) (Math.random() * getHeight());
-				int width = (int) (Math.random() * 100);
-				int hieght = width;
-
-				squareList.add(new Rectangle(xPosition, yPosition, width,
-						hieght));
-
+//				int xPosition = (int) (Math.random() * getWidth());
+//				int yPosition = (int) (Math.random() * getHeight());
+//				int width = (int) (Math.random() * 100);
+//				int hieght = width;
+//
+//				squareList.add(new Rectangle(xPosition, yPosition, width,
+//						hieght));
+shapePanel.addSquare();
 				repaint();
 
+			}
+		});
+		clearButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				shapePanel.clear();
+				repaint();
 			}
 		});
 
@@ -131,7 +150,7 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				addTriangle();
+				shapePanel.addTriangle();
 				repaint();
 
 			}
@@ -140,7 +159,7 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				addPolygon();
+				shapePanel.addPolygon();
 				repaint();
 
 			}
@@ -149,7 +168,7 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				addEllipse();
+				shapePanel.addEllipse();
 				repaint();
 
 			}
@@ -158,7 +177,7 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				addCircle();
+				shapePanel.addCircle();
 				repaint();
 
 			}
