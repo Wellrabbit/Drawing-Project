@@ -22,6 +22,7 @@ public class testPanel extends JPanel
 	private ArrayList<Polygon> triangleList;
 	private ArrayList<Polygon> PolygonList;
 	private ArrayList<Rectangle> squareList;
+	private ArrayList<Color> colorList;
 
 
 	private DrawingController baseController;
@@ -31,16 +32,53 @@ public class testPanel extends JPanel
 	{
 		this.baseController = baseController;
 		RecatngleList = new ArrayList<Rectangle>();
-		baseLayout = new SpringLayout();
+		setBaseLayout(new SpringLayout());
 		ellipseList = new ArrayList<Ellipse2D>();
 		triangleList = new ArrayList<Polygon>();
 		CircleList = new ArrayList<Ellipse2D>();
 		PolygonList = new ArrayList<Polygon>();
 		squareList =new ArrayList<Rectangle>();
-
+		colorList = new ArrayList<Color>();
+		setupColor();
 	
 	}
-
+private void setupColor()
+{
+	Color Orange = new Color(255, 55, 0);
+	Color YellowOrange = new Color(255, 179, 0);
+	Color Yellow = new Color(204, 255,0);
+	Color Green = new Color(77,255,0);
+	Color Pink = new Color(255,0,77);
+	Color Peach = new Color(255,100,61);
+	Color Almond = new Color(255,149,122);
+	Color DGreen = new Color(0,255,51);
+	Color FlPink = new Color(255,0,204);
+	Color Sky = new Color(122,228,255);
+	Color Blue = new Color(61,216,255);
+	Color Seafoam = new Color(0,255,179);
+	Color Violet = new Color(179,0,255);
+	Color DBlue = new Color(55,0,255);
+	Color DieBluRider = new Color(0,77,255);
+	Color Turqious = new Color(0,204,255);
+	
+	colorList.add(Orange);
+	colorList.add(YellowOrange);
+	colorList.add(Yellow);
+	colorList.add(Green);
+	colorList.add(Pink);
+	colorList.add(Peach);
+	colorList.add(Almond);
+	colorList.add(DGreen);
+	colorList.add(FlPink);
+	colorList.add(Sky);
+	colorList.add(Blue);
+	colorList.add(Seafoam);
+	colorList.add(Violet);
+	colorList.add(DBlue);
+	colorList.add(DieBluRider);
+	colorList.add(Turqious);
+	
+}
 	
 
 	public void addRectangle()
@@ -57,7 +95,14 @@ public class testPanel extends JPanel
 
 	public void addSquare()
 	{
+		int xPosition = (int) (Math.random() * getWidth());
+		int yPosition = (int) (Math.random() * getHeight());
+		int width = (int) (Math.random() * 100);
+		int hieght = width;
 
+	squareList.add(new Rectangle(xPosition, yPosition, width, hieght));
+
+		repaint();
 	}
 
 	
@@ -134,11 +179,13 @@ public class testPanel extends JPanel
 
 			for (Rectangle current : squareList)
 			{
-				int red = (int) (Math.random() * 256);
-				int blue = (int) (Math.random() * 256);
-				int green = (int) (Math.random() * 256);
-				mainGraphics.setColor(new Color(red, green, blue));
-				mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
+			//	int red = (int) (Math.random() * 256);
+			//	int blue = (int) (Math.random() * 256);
+			//	int green = (int) (Math.random() * 256);
+			//	mainGraphics.setColor(new Color(red, green, blue));
+				int	circleColor = (int) (Math.random() * colorList.size());
+				mainGraphics.setColor((colorList.get(circleColor)));
+				mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 4)));
 				mainGraphics.draw(current);
 
 			}
@@ -174,11 +221,9 @@ public class testPanel extends JPanel
 			}
 			for (Ellipse2D current : CircleList)
 			{
-				int red = (int) (Math.random() * 256);
-				int blue = (int) (Math.random() * 256);
-				int green = (int) (Math.random() * 256);
-				mainGraphics.setColor(new Color(red, green, blue));
-				mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
+			int	circleColor = (int) (Math.random() * colorList.size());
+				mainGraphics.setColor((colorList.get(circleColor)));
+				mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 4)));
 				mainGraphics.draw(current);
 
 			}
@@ -191,6 +236,20 @@ public class testPanel extends JPanel
 			this.CircleList.clear();
 			this.triangleList.clear();
 			this.PolygonList.clear();
+		}
+
+
+
+		public SpringLayout getBaseLayout()
+		{
+			return baseLayout;
+		}
+
+
+
+		public void setBaseLayout(SpringLayout baseLayout)
+		{
+			this.baseLayout = baseLayout;
 		}
 	}
 

@@ -47,7 +47,7 @@ public class DrawingPanel extends JPanel
 		shapePanel = new testPanel();
 		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 895, SpringLayout.NORTH, this);
 		
-		shapePanel.setBackground(Color.ORANGE);
+		shapePanel.setBackground(Color.WHITE);
 		
 		
 		
