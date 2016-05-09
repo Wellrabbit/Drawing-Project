@@ -23,6 +23,7 @@ public class DrawingPanel extends JPanel
 	private JButton clearButton;
 	private JButton circleButton;
 	private testPanel shapePanel;
+	private GraphPanel graphPanel;
 	private SpringLayout baseLayout;
 	private ArrayList<Rectangle> rectangleList;
 	private ArrayList<Rectangle> squareList;
@@ -42,17 +43,15 @@ public class DrawingPanel extends JPanel
 		circleButton = new JButton("Circle");
 		clearButton = new JButton("Clear Screen");
 		baseLayout = new SpringLayout();
-		
-		
+
 		shapePanel = new testPanel();
-		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, 895, SpringLayout.NORTH, this);
-		
+
+		graphPanel = new GraphPanel();
+
 		shapePanel.setBackground(Color.WHITE);
-		
-		
-		
-		
-				
+
+		graphPanel.setBackground(Color.BLACK);
+
 		triangleList = new ArrayList<Polygon>();
 		rectangleList = new ArrayList<Rectangle>();
 		squareList = new ArrayList<Rectangle>();
@@ -67,9 +66,10 @@ public class DrawingPanel extends JPanel
 	private void setupPanel()
 	{
 		this.setLayout(baseLayout);
-		
+
 		this.add(shapePanel);
-		
+		this.add(graphPanel);
+
 		this.add(rectangleButton);
 		this.add(squareButton);
 		this.add(triangleButton);
@@ -81,25 +81,51 @@ public class DrawingPanel extends JPanel
 
 	private void setupLayout()
 	{
-		baseLayout.putConstraint(SpringLayout.NORTH, rectangleButton, 0,
-				SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.EAST, rectangleButton, -138,
+		baseLayout.putConstraint(SpringLayout.EAST, squareButton, -47,
 				SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, clearButton, 29,
+				SpringLayout.SOUTH, rectangleButton);
+		baseLayout.putConstraint(SpringLayout.EAST, clearButton, 0,
+				SpringLayout.EAST, circleButton);
 		baseLayout.putConstraint(SpringLayout.NORTH, squareButton, 0,
 				SpringLayout.NORTH, rectangleButton);
-		baseLayout.putConstraint(SpringLayout.WEST, squareButton, 25,
-				SpringLayout.EAST, rectangleButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, triangleButton, 6, SpringLayout.SOUTH, squareButton);
-		baseLayout.putConstraint(SpringLayout.EAST, triangleButton, 0, SpringLayout.EAST, squareButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, polygonButton, 6, SpringLayout.SOUTH, rectangleButton);
-		baseLayout.putConstraint(SpringLayout.EAST, polygonButton, -53, SpringLayout.WEST, triangleButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, circleButton, 0, SpringLayout.NORTH, rectangleButton);
-		baseLayout.putConstraint(SpringLayout.EAST, circleButton, -6, SpringLayout.WEST, rectangleButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, ellipseButton, 0, SpringLayout.NORTH, triangleButton);
-		baseLayout.putConstraint(SpringLayout.EAST, ellipseButton, -6, SpringLayout.WEST, polygonButton);
-		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 102, SpringLayout.NORTH, this);
-		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 30, SpringLayout.WEST, this);
-		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, 0, SpringLayout.EAST, squareButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, ellipseButton, 333,
+				SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, triangleButton, 6,
+				SpringLayout.EAST, polygonButton);
+		baseLayout.putConstraint(SpringLayout.SOUTH, triangleButton, -6,
+				SpringLayout.NORTH, rectangleButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, rectangleButton, 6,
+				SpringLayout.SOUTH, polygonButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, polygonButton, 6,
+				SpringLayout.SOUTH, ellipseButton);
+		baseLayout.putConstraint(SpringLayout.WEST, polygonButton, 10,
+				SpringLayout.WEST, ellipseButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, circleButton, 0,
+				SpringLayout.NORTH, ellipseButton);
+		baseLayout.putConstraint(SpringLayout.WEST, circleButton, 6,
+				SpringLayout.EAST, ellipseButton);
+		baseLayout.putConstraint(SpringLayout.NORTH, shapePanel, 10,
+				SpringLayout.NORTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, shapePanel, 10,
+				SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.SOUTH, shapePanel, -55,
+				SpringLayout.SOUTH, this);
+		baseLayout.putConstraint(SpringLayout.WEST, ellipseButton, 6,
+				SpringLayout.EAST, shapePanel);
+		baseLayout.putConstraint(SpringLayout.WEST, rectangleButton, 6,
+				SpringLayout.EAST, shapePanel);
+		baseLayout.putConstraint(SpringLayout.EAST, shapePanel, -6,
+				SpringLayout.WEST, graphPanel);
+		baseLayout.putConstraint(SpringLayout.NORTH, graphPanel, 0,
+				SpringLayout.NORTH, shapePanel);
+		baseLayout.putConstraint(SpringLayout.SOUTH, graphPanel, -16,
+				SpringLayout.NORTH, ellipseButton);
+		baseLayout.putConstraint(SpringLayout.WEST, graphPanel, 705,
+				SpringLayout.WEST, this);
+		baseLayout.putConstraint(SpringLayout.EAST, graphPanel, -47,
+				SpringLayout.EAST, this);
+
 	}
 
 	private void setupListeners()
@@ -108,13 +134,13 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-//				int xPosition = (int) (Math.random() * getWidth());
-//				int yPosition = (int) (Math.random() * getHeight());
-//				int width = (int) (Math.random() * 100);
-//				int hieght = (int) (Math.random() * 100);
-//
-//				rectangleList.add(new Rectangle(xPosition, yPosition, width,
-//						hieght));
+				// int xPosition = (int) (Math.random() * getWidth());
+				// int yPosition = (int) (Math.random() * getHeight());
+				// int width = (int) (Math.random() * 100);
+				// int hieght = (int) (Math.random() * 100);
+				//
+				// rectangleList.add(new Rectangle(xPosition, yPosition, width,
+				// hieght));
 				shapePanel.addRectangle();
 				repaint();
 
@@ -125,14 +151,14 @@ public class DrawingPanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-//				int xPosition = (int) (Math.random() * getWidth());
-//				int yPosition = (int) (Math.random() * getHeight());
-//				int width = (int) (Math.random() * 100);
-//				int hieght = width;
-//
-//				squareList.add(new Rectangle(xPosition, yPosition, width,
-//						hieght));
-shapePanel.addSquare();
+				// int xPosition = (int) (Math.random() * getWidth());
+				// int yPosition = (int) (Math.random() * getHeight());
+				// int width = (int) (Math.random() * 100);
+				// int hieght = width;
+				//
+				// squareList.add(new Rectangle(xPosition, yPosition, width,
+				// hieght));
+				shapePanel.addSquare();
 				repaint();
 
 			}
@@ -184,26 +210,31 @@ shapePanel.addSquare();
 		});
 
 	}
-public void addEllipse()
-{
-	int xPosition = (int)(Math.random() * getWidth());
-	int yPosition = (int)(Math.random() * getHeight());
-	int width = (int)(Math.random() * 50);
-	int height = (int)(Math.random()* 100);
-	
-	Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition, width, height);
-	ellipseList.add(currentEllipse);
-}
-public void addCircle()
-{
-	int xPosition = (int)(Math.random() * getWidth());
-	int yPosition = (int)(Math.random() * getHeight());
-	int width = (int)(Math.random() * 100);
-	int height = width;
-	
-	Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition, width, height);
-	circleList.add(currentEllipse);
-}
+
+	public void addEllipse()
+	{
+		int xPosition = (int) (Math.random() * getWidth());
+		int yPosition = (int) (Math.random() * getHeight());
+		int width = (int) (Math.random() * 50);
+		int height = (int) (Math.random() * 100);
+
+		Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition,
+				width, height);
+		ellipseList.add(currentEllipse);
+	}
+
+	public void addCircle()
+	{
+		int xPosition = (int) (Math.random() * getWidth());
+		int yPosition = (int) (Math.random() * getHeight());
+		int width = (int) (Math.random() * 100);
+		int height = width;
+
+		Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition,
+				width, height);
+		circleList.add(currentEllipse);
+	}
+
 	public void addPolygon()
 	{
 		int numOfSides = (int) (Math.random() * 3) + 3;
@@ -241,7 +272,6 @@ public void addCircle()
 		super.paintComponent(currentGraphics);
 
 		Graphics2D mainGraphics = (Graphics2D) currentGraphics;
-	
 
 		for (Rectangle current : rectangleList)
 		{
@@ -284,8 +314,8 @@ public void addCircle()
 					(int) (Math.random() * 6) + 2));
 			mainGraphics.draw(currentPolygon);
 		}
-		
-		for(Ellipse2D current : ellipseList)
+
+		for (Ellipse2D current : ellipseList)
 		{
 			int red = (int) (Math.random() * 256);
 			int blue = (int) (Math.random() * 256);
@@ -296,9 +326,10 @@ public void addCircle()
 		}
 
 	}
+
 	public void clear()
 	{
 		PolygonList.clear();
-		//do for all lists
+		// do for all lists
 	}
 }

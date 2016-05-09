@@ -16,12 +16,12 @@ import controller.DrawingController;
 
 public class testPanel extends JPanel
 {
-	private ArrayList<Rectangle> RecatngleList;
-	private ArrayList<Ellipse2D> ellipseList;
-	private ArrayList<Ellipse2D> CircleList;
-	private ArrayList<Polygon> triangleList;
-	private ArrayList<Polygon> PolygonList;
-	private ArrayList<Rectangle> squareList;
+	private static ArrayList<Rectangle> RecatngleList;
+	private static ArrayList<Ellipse2D> ellipseList;
+	private static ArrayList<Ellipse2D> CircleList;
+	private static  ArrayList<Polygon> triangleList;
+	private static ArrayList<Polygon> PolygonList;
+	private static ArrayList<Rectangle> squareList;
 	private ArrayList<Color> colorList;
 
 
@@ -39,9 +39,13 @@ public class testPanel extends JPanel
 		PolygonList = new ArrayList<Polygon>();
 		squareList =new ArrayList<Rectangle>();
 		colorList = new ArrayList<Color>();
+		
 		setupColor();
 	
 	}
+
+
+
 private void setupColor()
 {
 	Color Orange = new Color(255, 55, 0);
@@ -230,26 +234,53 @@ private void setupColor()
 		}
 		public void clear()
 		{
-			this.RecatngleList.clear();
-			this.squareList.clear();
-			this.ellipseList.clear();
-			this.CircleList.clear();
-			this.triangleList.clear();
-			this.PolygonList.clear();
+			testPanel.RecatngleList.clear();
+			testPanel.getSquareList().clear();
+			testPanel.ellipseList.clear();
+			testPanel.CircleList.clear();
+			testPanel.triangleList.clear();
+			testPanel.PolygonList.clear();
 		}
 
-
-
+		public static ArrayList<Rectangle> getRecatngleList()
+		{
+			return RecatngleList;
+		}
+		public static ArrayList<Ellipse2D> getEllipseList()
+		{
+			return ellipseList;
+		}
+		public static ArrayList<Ellipse2D> getCircleList()
+		{
+			return CircleList;
+		}
+		public static ArrayList<Polygon> getTriangleList()
+		{
+			return triangleList;
+		}
+		public static ArrayList<Polygon> getPolygonList()
+		{
+			return PolygonList;
+		}
+		public static ArrayList<Rectangle> getSquareList()
+		{
+			return squareList;
+		}
+		public ArrayList<Color> getColorList()
+		{
+			return colorList;
+		}
+		public DrawingController getBaseController()
+		{
+			return baseController;
+		}
 		public SpringLayout getBaseLayout()
 		{
 			return baseLayout;
 		}
-
-
-
 		public void setBaseLayout(SpringLayout baseLayout)
 		{
 			this.baseLayout = baseLayout;
 		}
-	}
+}
 
