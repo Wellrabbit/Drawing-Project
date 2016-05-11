@@ -53,6 +53,7 @@ public class DrawingPanel extends JPanel
 		shapePanel = new testPanel();
 
 		graphPanel = new GraphPanel(this);
+		
 
 		shapePanel.setBackground(Color.WHITE);
 
@@ -226,165 +227,165 @@ public class DrawingPanel extends JPanel
 
 	}
 
-	public void addEllipse()
-	{
-		int xPosition = (int) (Math.random() * getWidth());
-		int yPosition = (int) (Math.random() * getHeight());
-		int width = (int) (Math.random() * 50);
-		int height = (int) (Math.random() * 100);
-
-		Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition,
-				width, height);
-		ellipseList.add(currentEllipse);
-	}
-
-	public void addCircle()
-	{
-		int xPosition = (int) (Math.random() * getWidth());
-		int yPosition = (int) (Math.random() * getHeight());
-		int width = (int) (Math.random() * 100);
-		int height = width;
-
-		Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition,
-				width, height);
-		circleList.add(currentEllipse);
-	}
-
-	public void addPolygon()
-	{
-		int numOfSides = (int) (Math.random() * 3) + 3;
-		int[] xPoints = new int[numOfSides];
-		int[] yPoints = new int[numOfSides];
-
-		for (int side = 0; side < numOfSides; side++)
-		{
-			xPoints[side] = (int) (Math.random() * getWidth());
-			yPoints[side] = (int) (Math.random() * getHeight());
-		}
-		Polygon myPolygon = new Polygon(xPoints, yPoints, numOfSides);
-		PolygonList.add(myPolygon);
-	}
-
-	public void addTriangle()
-	{
-		int[] xPoints = new int[3];
-		xPoints[0] = (int) (Math.random() * getWidth());
-		xPoints[2] = (int) (Math.random() * getWidth());
-		xPoints[3] = (int) (Math.random() * getWidth());
-
-		int[] yPoints = new int[3];
-		yPoints[0] = (int) (Math.random() * getHeight());
-		yPoints[2] = (int) (Math.random() * getHeight());
-		yPoints[3] = (int) (Math.random() * getHeight());
-
-		Polygon trianlge = new Polygon(xPoints, yPoints, 3);
-		triangleList.add(trianlge);
-	}
-
-	@Override
-	protected void paintComponent(Graphics currentGraphics)
-	{
-		super.paintComponent(currentGraphics);
-
-		Graphics2D mainGraphics = (Graphics2D) currentGraphics;
-
-		for (Rectangle current : rectangleList)
-		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
-			mainGraphics.draw(current);
-
-		}
-
-		for (Rectangle current : squareList)
-		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
-			mainGraphics.draw(current);
-
-		}
-		for (Polygon currentPolygon : triangleList)
-		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.setStroke(new BasicStroke(
-					(int) (Math.random() * 6) + 2));
-			mainGraphics.draw(currentPolygon);
-		}
-		for (Polygon currentPolygon : PolygonList)
-		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.setStroke(new BasicStroke(
-					(int) (Math.random() * 6) + 2));
-			mainGraphics.draw(currentPolygon);
-		}
-
-		for (Ellipse2D current : ellipseList)
-		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
-			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
-			mainGraphics.draw(current);
-		}
-
-	}
-
-	public void clear()
-	{
-		PolygonList.clear();
-		// do for all lists
-	}
-
-public int getCircleCount()
-{
-	return circleCount;
-}
-
-public void setCircleCount(int circleCount)
-{
-	this.circleCount = circleCount;
-}
-
-public int getSquareCount()
-{
-	return squareCount;
-}
-
-public void setSquareCount(int squareCount)
-{
-	this.squareCount = squareCount;
-}
-
-public int getEllipseCount()
-{
-	return ellipseCount;
-}
-
-public void setEllipseCount(int ellipseCount)
-{
-	this.ellipseCount = ellipseCount;
-}
-
-public int getRectCount()
-{
-	return rectCount;
-}
-
-public void setRectCount(int rectCount)
-{
-	this.rectCount = rectCount;
-}
+//	public void addEllipse()
+//	{
+//		int xPosition = (int) (Math.random() * getWidth());
+//		int yPosition = (int) (Math.random() * getHeight());
+//		int width = (int) (Math.random() * 50);
+//		int height = (int) (Math.random() * 100);
+//
+//		Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition,
+//				width, height);
+//		ellipseList.add(currentEllipse);
+//	}
+//
+//	public void addCircle()
+//	{
+//		int xPosition = (int) (Math.random() * getWidth());
+//		int yPosition = (int) (Math.random() * getHeight());
+//		int width = (int) (Math.random() * 100);
+//		int height = width;
+//
+//		Ellipse2D currentEllipse = new Ellipse2D.Double(xPosition, yPosition,
+//				width, height);
+//		circleList.add(currentEllipse);
+//	}
+//
+//	public void addPolygon()
+//	{
+//		int numOfSides = (int) (Math.random() * 3) + 3;
+//		int[] xPoints = new int[numOfSides];
+//		int[] yPoints = new int[numOfSides];
+//
+//		for (int side = 0; side < numOfSides; side++)
+//		{
+//			xPoints[side] = (int) (Math.random() * getWidth());
+//			yPoints[side] = (int) (Math.random() * getHeight());
+//		}
+//		Polygon myPolygon = new Polygon(xPoints, yPoints, numOfSides);
+//		PolygonList.add(myPolygon);
+//	}
+//
+//	public void addTriangle()
+//	{
+//		int[] xPoints = new int[3];
+//		xPoints[0] = (int) (Math.random() * getWidth());
+//		xPoints[2] = (int) (Math.random() * getWidth());
+//		xPoints[3] = (int) (Math.random() * getWidth());
+//
+//		int[] yPoints = new int[3];
+//		yPoints[0] = (int) (Math.random() * getHeight());
+//		yPoints[2] = (int) (Math.random() * getHeight());
+//		yPoints[3] = (int) (Math.random() * getHeight());
+//
+//		Polygon trianlge = new Polygon(xPoints, yPoints, 3);
+//		triangleList.add(trianlge);
+//	}
+//
+//	@Override
+//	protected void paintComponent(Graphics currentGraphics)
+//	{
+//		super.paintComponent(currentGraphics);
+//
+//		Graphics2D mainGraphics = (Graphics2D) currentGraphics;
+//
+//		for (Rectangle current : rectangleList)
+//		{
+//			int red = (int) (Math.random() * 256);
+//			int blue = (int) (Math.random() * 256);
+//			int green = (int) (Math.random() * 256);
+//			mainGraphics.setColor(new Color(red, green, blue));
+//			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
+//			mainGraphics.draw(current);
+//
+//		}
+//
+//		for (Rectangle current : squareList)
+//		{
+//			int red = (int) (Math.random() * 256);
+//			int blue = (int) (Math.random() * 256);
+//			int green = (int) (Math.random() * 256);
+//			mainGraphics.setColor(new Color(red, green, blue));
+//			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
+//			mainGraphics.draw(current);
+//
+//		}
+//		for (Polygon currentPolygon : triangleList)
+//		{
+//			int red = (int) (Math.random() * 256);
+//			int blue = (int) (Math.random() * 256);
+//			int green = (int) (Math.random() * 256);
+//			mainGraphics.setColor(new Color(red, green, blue));
+//			mainGraphics.setStroke(new BasicStroke(
+//					(int) (Math.random() * 6) + 2));
+//			mainGraphics.draw(currentPolygon);
+//		}
+//		for (Polygon currentPolygon : PolygonList)
+//		{
+//			int red = (int) (Math.random() * 256);
+//			int blue = (int) (Math.random() * 256);
+//			int green = (int) (Math.random() * 256);
+//			mainGraphics.setColor(new Color(red, green, blue));
+//			mainGraphics.setStroke(new BasicStroke(
+//					(int) (Math.random() * 6) + 2));
+//			mainGraphics.draw(currentPolygon);
+//		}
+//
+//		for (Ellipse2D current : ellipseList)
+//		{
+//			int red = (int) (Math.random() * 256);
+//			int blue = (int) (Math.random() * 256);
+//			int green = (int) (Math.random() * 256);
+//			mainGraphics.setColor(new Color(red, green, blue));
+//			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
+//			mainGraphics.draw(current);
+//		}
+//
+//	}
+//
+//	public void clear()
+//	{
+//		PolygonList.clear();
+//		// do for all lists
+//	}
+//
+//public int getCircleCount()
+//{
+//	return circleCount;
+//}
+//
+//public void setCircleCount(int circleCount)
+//{
+//	this.circleCount = circleCount;
+//}
+//
+//public int getSquareCount()
+//{
+//	return squareCount;
+//}
+//
+//public void setSquareCount(int squareCount)
+//{
+//	this.squareCount = squareCount;
+//}
+//
+//public int getEllipseCount()
+//{
+//	return ellipseCount;
+//}
+//
+//public void setEllipseCount(int ellipseCount)
+//{
+//	this.ellipseCount = ellipseCount;
+//}
+//
+//public int getRectCount()
+//{
+//	return rectCount;
+//}
+//
+//public void setRectCount(int rectCount)
+//{
+//	this.rectCount = rectCount;
+//}
 }

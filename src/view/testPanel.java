@@ -170,10 +170,8 @@ public class testPanel extends JPanel
 
 		for (Rectangle current : RecatngleList)
 		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
+			int circleColor = (int) (Math.random() * colorList.size());
+			mainGraphics.setColor((colorList.get(circleColor)));
 			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
 			mainGraphics.draw(current);
 
@@ -193,20 +191,16 @@ public class testPanel extends JPanel
 		}
 		for (Polygon currentPolygon : triangleList)
 		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
+			int circleColor = (int) (Math.random() * colorList.size());
+			mainGraphics.setColor((colorList.get(circleColor)));
 			mainGraphics.setStroke(new BasicStroke(
 					(int) (Math.random() * 6) + 2));
 			mainGraphics.draw(currentPolygon);
 		}
 		for (Polygon currentPolygon : PolygonList)
 		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
+			int circleColor = (int) (Math.random() * colorList.size());
+			mainGraphics.setColor((colorList.get(circleColor)));
 			mainGraphics.setStroke(new BasicStroke(
 					(int) (Math.random() * 6) + 2));
 			mainGraphics.draw(currentPolygon);
@@ -214,10 +208,8 @@ public class testPanel extends JPanel
 
 		for (Ellipse2D current : ellipseList)
 		{
-			int red = (int) (Math.random() * 256);
-			int blue = (int) (Math.random() * 256);
-			int green = (int) (Math.random() * 256);
-			mainGraphics.setColor(new Color(red, green, blue));
+			int circleColor = (int) (Math.random() * colorList.size());
+			mainGraphics.setColor((colorList.get(circleColor)));
 			mainGraphics.setStroke(new BasicStroke((int) (Math.random() * 6)));
 			mainGraphics.draw(current);
 		}
