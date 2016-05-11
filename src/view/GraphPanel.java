@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import view.testPanel;
 
 import controller.DrawingController;
+import view.DrawingPanel;
 
 public class GraphPanel extends JPanel
 {
@@ -20,24 +21,30 @@ private ArrayList<Integer> valueForGraph;
 private int listSize;
 
 private DrawingController baseController;
-
-public GraphPanel()
+private DrawingPanel basePanel;
+public GraphPanel(DrawingPanel basePanel)
 {
 	this.baseController = baseController;
+	this.basePanel = basePanel;
 	colorList = new ArrayList<Color>();
 	getRect = new ArrayList<Rectangle>();
-valueForGraph = new ArrayList<Integer>();
-listSize = testPanel.getCircleList().size();
-setupList();
+	valueForGraph = new ArrayList<Integer>();
 	setupColor();
+	setupList();
 }
 private void setupList()
 {
-	valueForGraph.add(testPanel.getCircleList().size());
-	valueForGraph.add(listSize);
-	valueForGraph.add(testPanel.getSquareList().size());
-	valueForGraph.add(testPanel.getTriangleList().size());
-	valueForGraph.add(testPanel.getEllipseList().size());
+	this.valueForGraph.add(basePanel.circleCount);
+	this.valueForGraph.add(basePanel.ellipseCount);
+	this.valueForGraph.add(basePanel.rectCount);
+	this.valueForGraph.add(basePanel.squareCount);
+}
+private void updateList()
+{
+	this.valueForGraph.set(0, basePanel.circleCount);
+	this.valueForGraph.set(1, basePanel.ellipseCount);
+	this.valueForGraph.set(2, basePanel.rectCount);
+	this.valueForGraph.set(3, basePanel.squareCount);
 }
 private void setupColor()
 {
@@ -85,11 +92,11 @@ protected void paintComponent(Graphics currentGraphics)
 	for(int index = 0; index < valueForGraph.size(); index++)
 	{
 	
-		
+		updateList();
 		int windowHeight = this.getHeight();
 		int windowWidth = this.getWidth();
 		int xPos = 0;
-		int height = (int) (windowHeight/valueForGraph.size());
+		int height = (int) (windowHeight/4);
 		int yPos = (int) (index * height);
 		int width = (int) valueForGraph.get(index);
 		

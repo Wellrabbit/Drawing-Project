@@ -31,6 +31,12 @@ public class DrawingPanel extends JPanel
 	private ArrayList<Polygon> PolygonList;
 	private ArrayList<Ellipse2D> ellipseList;
 	private ArrayList<Ellipse2D> circleList;
+	public int circleCount;
+	
+
+	public int squareCount;
+	public int ellipseCount;
+	public int rectCount;
 
 	public DrawingPanel(DrawingController baseController)
 	{
@@ -46,7 +52,7 @@ public class DrawingPanel extends JPanel
 
 		shapePanel = new testPanel();
 
-		graphPanel = new GraphPanel();
+		graphPanel = new GraphPanel(this);
 
 		shapePanel.setBackground(Color.WHITE);
 
@@ -58,6 +64,11 @@ public class DrawingPanel extends JPanel
 		PolygonList = new ArrayList<Polygon>();
 		ellipseList = new ArrayList<Ellipse2D>();
 		circleList = new ArrayList<Ellipse2D>();
+		
+		this.circleCount = 0;
+		this.squareCount = 0;
+		this.ellipseCount = 0;
+		this.rectCount = 0;
 		setupPanel();
 		setupLayout();
 		setupListeners();
@@ -142,6 +153,7 @@ public class DrawingPanel extends JPanel
 				// rectangleList.add(new Rectangle(xPosition, yPosition, width,
 				// hieght));
 				shapePanel.addRectangle();
+				rectCount ++;
 				repaint();
 
 			}
@@ -159,6 +171,7 @@ public class DrawingPanel extends JPanel
 				// squareList.add(new Rectangle(xPosition, yPosition, width,
 				// hieght));
 				shapePanel.addSquare();
+				squareCount++;
 				repaint();
 
 			}
@@ -195,6 +208,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				shapePanel.addEllipse();
+				ellipseCount++;
 				repaint();
 
 			}
@@ -204,6 +218,7 @@ public class DrawingPanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				shapePanel.addCircle();
+				circleCount++;
 				repaint();
 
 			}
@@ -332,4 +347,44 @@ public class DrawingPanel extends JPanel
 		PolygonList.clear();
 		// do for all lists
 	}
+
+public int getCircleCount()
+{
+	return circleCount;
+}
+
+public void setCircleCount(int circleCount)
+{
+	this.circleCount = circleCount;
+}
+
+public int getSquareCount()
+{
+	return squareCount;
+}
+
+public void setSquareCount(int squareCount)
+{
+	this.squareCount = squareCount;
+}
+
+public int getEllipseCount()
+{
+	return ellipseCount;
+}
+
+public void setEllipseCount(int ellipseCount)
+{
+	this.ellipseCount = ellipseCount;
+}
+
+public int getRectCount()
+{
+	return rectCount;
+}
+
+public void setRectCount(int rectCount)
+{
+	this.rectCount = rectCount;
+}
 }
